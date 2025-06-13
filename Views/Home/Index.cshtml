@@ -1,0 +1,55 @@
+﻿@model Login  
+
+@{  
+    ViewData["Title"] = "Home Page";  
+}
+
+<div class="text-center" id="welcomeContainer" style="display:none;">
+
+    <h1 class="h3 fw-bold mb-2">¡Bienvenido/a!</h1>
+    <p class="text-muted mb-0" id="welcomeUser"></p>
+</div>
+<div id="loginContainer">
+
+    <div class="text-center">
+        <h1 class="h3 fw-bold mb-2 ">Bienvenido/a</h1>
+        <p class="text-muted mb-0">Inicia sesión para continuar</p>
+    </div>
+
+    <form id="loginForm" method="post" autocomplete="off">
+        <div class="mb-3">
+            <label asp-for="Username" class="form-label">Usuario</label>
+
+            <input asp-for="Username" class="form-control" placeholder="Ingrese su usuario" autofocus required />
+
+            <span asp-validation-for="Username" class="text-danger"></span>
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="Password" class="form-label">Contraseña</label>
+
+            <input asp-for="Password" type="password" class="form-control" placeholder="Ingrese su contraseña" pattern="^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d$!%*#?&]{6,}$"  />
+
+            <span asp-validation-for="Password" class="text-danger"></span>
+        </div>
+
+        <div class="mb-3 form-check">
+            <input asp-for="RememberMe" type="checkbox" class="form-check-input" id="rememberMeCheck" />
+            <label asp-for="RememberMe" class="form-check-label" for="rememberMeCheck">Recordarme</label>
+        </div>
+
+        <button type="submit" class="btn btn-primary w-100">Iniciar Sesión</button>
+    </form>
+
+    <div class="nav-link mt-3 text-center">
+        <a asp-controller="Auth" asp-action="Register" class="text-decoration-none small">
+            ¿No tienes una cuenta?
+        </a>
+    </div>
+</div>
+
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+    <script src="~/js/site.js" asp-append-version="true"></script>
+}

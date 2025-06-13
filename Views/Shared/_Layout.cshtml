@@ -1,0 +1,76 @@
+﻿@using System.Security.Claims
+@{
+    var user = Context.User;
+    var isAuthenticated = user.Identity.IsAuthenticated;
+    var nombre = user.FindFirst(ClaimTypes.GivenName)?.Value;
+    var apellido = user.FindFirst(ClaimTypes.Surname)?.Value;
+}
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title> Gestor de Usuarios</title>
+    <script type="importmap"></script>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/AuthenticationWebApplication.styles.css" asp-append-version="true" />
+</head>
+<body>
+    <header>
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3 px-4 d-flex align-items-center justify-content-center">
+            <div class="container-fluid row-gap-2">
+                <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">
+                    <img src="~/images/caid-logo.webp" alt="Logo Caid" class="navbar-brand" style="width: 80px; height: auto; object-fit: contain;">
+                </a>
+                 <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">Gestor de Usuarios</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
+                    <ul class="navbar-nav flex-grow-1">
+                        <li class="nav-item">
+                            
+                        </li>
+                    </ul>
+                </div>
+                <div class="d-flex flex-row gap-4">
+                    <span class="navbar-text" id="userName"></span>
+                    <a class="nav-link" asp-controller="Home" asp-action="Index" id="loginLink">Iniciar Sesión</a>
+                    <form id="logoutForm" method="post" asp-controller="Auth" asp-action="Logout" style="display:none;">
+                        <button type="submit" class="btn btn-primary" id="logoutBtn">Cerrar sesión</button>
+                    </form>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <div class="container">
+        <main role="main" class="pb-3 d-flex justify-content-center align-items">
+            <section class="d-flex justify-content-center align-items-center min-vh-100">
+                <div class="card shadow-lg p-4" style="max-width: 400px; width: 900px;">
+                    <div class="mb-4">
+                        <div class="d-flex justify-content-center">
+                         <img src="~/images/caid-logo.webp" alt="Logo Caid" class="mb-3" style="width: 80px; height: 80px; object-fit: contain;">
+                        </div>
+                        @RenderBody()
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <footer class="border-top footer text-muted">
+        <div class="container">
+            &copy; 2025 - Gestor de Usuarios - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacidad</a>
+        </div>
+    </footer>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>
+
+

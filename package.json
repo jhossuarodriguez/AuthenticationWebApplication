@@ -1,0 +1,14 @@
+{
+  "name": "authenticationwebapplication",
+  "version": "1.0.0",
+  "description": "Buenos dias, Jhossua:",
+  "main": "index.js",
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "devDependencies": {
+    "eslint": "^9.28.0",
+    "tailwindcss": "^4.1.10"
+  }
+}
